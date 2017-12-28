@@ -14,6 +14,12 @@ This repository is our C++ implementation of the **ECCV 2016** paper, **Natural 
 4. [Input-42-data](http://www.cmlab.csie.ntu.edu.tw/project/stitching-wGSP/input-42-data.zip)
 5. [All our results](http://www.cmlab.csie.ntu.edu.tw/project/stitching-wGSP/0_results.zip)
 
+### Building
+1. cd to the ./vlfeat-0.9.20 and build the vlfeat; in ubuntu, "make" is enough for this task
+2. use the CMake to configure the project and make sure set the VLFEAT_LIBRARY with the "./vlfeat-0.9.20/bin/***(the name depend on you system)/libvl"
+3. mkdir build 
+4. cd build && cmake .. && make  
+
 ### Usage
 1. Download code and compile.
 	* You need **Eigen**, **VLFeat**, **OpenCV 3.0.0** and [**OpenMP**](https://github.com/nothinglo/NISwGSP/issues/8) (if you don't need to use omp.h, you can ignore it.)
@@ -28,12 +34,17 @@ This repository is our C++ implementation of the **ECCV 2016** paper, **Natural 
 2. Download [input-42-data](http://www.cmlab.csie.ntu.edu.tw/project/stitching-wGSP/input-42-data.zip). 
 	* 42 sets of images: 6 from [1], 3 from [2], 3 from [3], 7 from [4], 4 from [5] and 19 collected by ourselves.
 	
-3. Move **[input-42-data]** folder to your working directory.
+3. Move **[input-42-data]** folder to your working directory(the working directory is where the executable file is).
 4. Run the command:
 
 	```
 	./exe folder_name_in_[input-42-data]_folder
 	```
+  eg.
+  ```
+	./NISwGSP AANAP-building
+	```
+
 	The results can be found in **[0_results]** folder under **[input-42-data]** folder.
 
 5. Optional:
