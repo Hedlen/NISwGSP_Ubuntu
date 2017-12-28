@@ -35,7 +35,7 @@ before_script:
 
   - mkdir ${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/build
   - cd ${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/build
-  - cmake -D VLFEAT_LIBRARY=${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/vlfeat-0.9.20/bin/glnxa64/libvl.so ..
+  - cmake -D EIGEN3_INCLUDE_DIR=${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/eigen -D VLFEAT_LIBRARY=${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/vlfeat-0.9.20/bin/glnxa64/libvl.so ..
 
 
 script:
