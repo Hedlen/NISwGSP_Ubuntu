@@ -35,8 +35,8 @@ using namespace cv;
 
 
 
-#include <eigen3/Eigen/SVD>
-#include <eigen3/Eigen/IterativeLinearSolvers>
+#include <Eigen/SVD>
+#include <Eigen/IterativeLinearSolvers>
 using namespace Eigen;
 
 #include "vlfeat-0.9.20/vl/sift.h"
