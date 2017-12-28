@@ -9,7 +9,7 @@
 #ifndef __UglyMan_Stitiching__Transform__
 #define __UglyMan_Stitiching__Transform__
 
-#include "Configure.h"
+#include "../Configure.h"
 
 Mat getConditionerFromPts(const vector<Point2> & pts);
 

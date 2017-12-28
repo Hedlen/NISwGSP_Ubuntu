@@ -7,13 +7,12 @@
 //
 
 #include <iostream>
-#include "NISwGSP_Stitching.h"
-#include "TimeCalculator.h"
+#include "./Stitching/NISwGSP_Stitching.h"
+#include "./Debugger/TimeCalculator.h"
 
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-
     Eigen::initParallel(); /* remember to turn off "Hardware Multi-Threading */
     cout << "nThreads = " << Eigen::nbThreads() << endl;
     cout << "[#Images : " << argc - 1 << "]" << endl;

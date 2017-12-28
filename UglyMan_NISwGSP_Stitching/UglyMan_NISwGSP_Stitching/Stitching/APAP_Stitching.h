@@ -9,8 +9,8 @@
 #ifndef __UglyMan_Stitiching__APAP_Stitching__
 #define __UglyMan_Stitiching__APAP_Stitching__
 
-#include "Configure.h"
-#include "Transform.h"
+#include "../Configure.h"
+#include "../Util/Transform.h"
 
 class APAP_Stitching {
 public:

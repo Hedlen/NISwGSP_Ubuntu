@@ -9,7 +9,7 @@
 #ifndef __UglyMan_Stitiching__FeatureController__
 #define __UglyMan_Stitiching__FeatureController__
 
-#include "Configure.h"
+#include "../Configure.h"
 
 const int SIFT_DESCRIPTOR_DIM = 128;
 

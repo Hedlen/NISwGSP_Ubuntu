@@ -10,9 +10,9 @@
 #define __UglyMan_Stitiching__ImageData__
 
 #include <memory>
-#include "Statistics.h"
-#include "FeatureController.h"
-#include "MeshGrid.h"
+#include "../Util/Statistics.h"
+#include "../Feature/FeatureController.h"
+#include "../Mesh/MeshGrid.h"
 
 class LineData {
 public:

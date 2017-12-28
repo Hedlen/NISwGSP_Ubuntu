@@ -9,9 +9,9 @@
 #ifndef __UglyMan_Stitiching__Statistics__
 #define __UglyMan_Stitiching__Statistics__
 
-#include <vector>
 #include <cmath>
-#include "ErrorController.h"
+#include "../Debugger/ErrorController.h"
+#include "../Configure.h"
 
 class Statistics {
 public:

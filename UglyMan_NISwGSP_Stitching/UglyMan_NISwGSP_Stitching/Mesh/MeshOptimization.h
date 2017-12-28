@@ -9,8 +9,8 @@
 #ifndef __UglyMan_Stitiching__MeshOptimization__
 #define __UglyMan_Stitiching__MeshOptimization__
 
-#include "MultiImages.h"
-#include "Blending.h"
+#include "../Feature/MultiImages.h"
+#include "../Util/Blending.h"
 
 class MeshOptimization {
 public:

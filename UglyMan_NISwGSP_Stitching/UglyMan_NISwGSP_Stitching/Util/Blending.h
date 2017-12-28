@@ -9,7 +9,7 @@
 #ifndef __UglyMan_Stitiching__Blending__
 #define __UglyMan_Stitiching__Blending__
 
-#include "Configure.h"
+#include "../Configure.h"
 
 Mat getMatOfLinearBlendWeight(const Mat & image);
 

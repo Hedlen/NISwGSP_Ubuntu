@@ -95,8 +95,8 @@ Point_<T> applyTransform2x3(T x, T y, const Mat & matT) {
 
 template <typename T>
 Size_<T> normalizeVertices(vector<vector<Point_<T> > > & vertices) {
-    T min_x = MAXFLOAT, max_x = -MAXFLOAT;
-    T min_y = MAXFLOAT, max_y = -MAXFLOAT;
+    T min_x = std::numeric_limits<T>::max(), max_x = -std::numeric_limits<T>::max();
+    T min_y = std::numeric_limits<T>::max(), max_y = -std::numeric_limits<T>::max();
     for(int i = 0; i < vertices.size(); ++i) {
         for(int j = 0; j < vertices[i].size(); ++j) {
             min_x = min(min_x, vertices[i][j].x);

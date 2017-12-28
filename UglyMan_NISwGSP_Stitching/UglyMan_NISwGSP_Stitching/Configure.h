@@ -9,9 +9,11 @@
 #ifndef __UglyMan_Stitiching__Configure__
 #define __UglyMan_Stitiching__Configure__
 
-#include "ErrorController.h"
-#include "TimeCalculator.h"
+#include "./Debugger/ErrorController.h"
+#include "./Debugger/TimeCalculator.h"
 
+#include <limits>
+#include <memory>
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -19,10 +21,19 @@
 #include <set>
 using namespace std;
 
+#define MAXFLOAT std::numeric_limits<double>::max()
+
+template<typename T, typename... Args>
+unique_ptr<T> make_unique(Args&&... args) {
+    return unique_ptr<T>(new T(forward<Args>(args)...));
+}
+
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 using namespace cv;
+
+
 
 #include <eigen3/Eigen/SVD>
 #include <eigen3/Eigen/IterativeLinearSolvers>

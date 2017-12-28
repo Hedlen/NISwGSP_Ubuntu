@@ -11,13 +11,14 @@
 
 #include <queue>
 
-#include "Parameter.h"
-#include "ImageData.h"
-#include "Statistics.h"
-#include "ImageDebugger.h"
-#include "APAP_Stitching.h"
-#include "Blending.h"
-#include "ColorMap.h"
+#include "../Configure.h"
+#include "../Stitching/Parameter.h"
+#include "../Feature/ImageData.h"
+#include "../Util/Statistics.h"
+#include "../Debugger/ImageDebugger.h"
+#include "../Stitching/APAP_Stitching.h"
+#include "../Util/Blending.h"
+#include "../Debugger/ColorMap.h"
 
 #include <opencv2/calib3d.hpp> /* CV_RANSAC */
 #include <opencv2/stitching/detail/autocalib.hpp> /* ImageFeatures, MatchesInfo */

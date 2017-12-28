@@ -287,7 +287,7 @@ vector<vector<Point2> > MeshOptimization::getImageVerticesBySolving(vector<Tripl
     LeastSquaresConjugateGradient<SparseMatrix<double> > lscg;
     SparseMatrix<double> A(equations, getVerticesCount());
     VectorXd b = VectorXd::Zero(equations), x;
-    
+ 
 #ifndef NDEBUG
     TimeCalculator timer;
     timer.start();
@@ -308,7 +308,7 @@ vector<vector<Point2> > MeshOptimization::getImageVerticesBySolving(vector<Tripl
     cout << "#Iterations:     " << lscg.iterations() << endl;
     cout << "Estimated error: " << lscg.error()      << endl;
 #endif
-    
+ 
     vector<vector<Point2> > vertices;
     vertices.resize(multi_images->images_data.size());
     for(int i = 0, x_index = 0; i < vertices.size(); ++i) {

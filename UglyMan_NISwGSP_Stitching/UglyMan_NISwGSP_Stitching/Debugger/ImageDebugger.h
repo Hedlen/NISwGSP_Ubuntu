@@ -9,7 +9,7 @@
 #ifndef __UglyMan_Stitiching__ImageDebugger__
 #define __UglyMan_Stitiching__ImageDebugger__
 
-#include "Configure.h"
+#include "../Configure.h"
 
 Mat getImageOfFeaturePairs(const Mat & img1,
                            const Mat & img2,

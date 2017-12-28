@@ -406,7 +406,7 @@ const vector<SimilarityElements> & MultiImages::getImagesSimilarityElements(cons
                     b[equation    ] = STRONG_CONSTRAINT * cos(theta_constraints[i].second);
                     b[equation + 1] = STRONG_CONSTRAINT * sin(theta_constraints[i].second);
                     equation += DIMENSION_2D;
-                }
+                } 
                 for(int i = 0; i < images_match_graph_pair_list.size(); ++i) {
                     const pair<int, int> & match_pair = images_match_graph_pair_list[i];
                     const int & m1 = match_pair.first, & m2 = match_pair.second;
@@ -424,7 +424,7 @@ const vector<SimilarityElements> & MultiImages::getImagesSimilarityElements(cons
                 LeastSquaresConjugateGradient<SparseMatrix<double> > lscg(A);
                 VectorXd x = lscg.solve(b);
 
-                for(int i = 0; i < images_data.size(); ++i) {
+               for(int i = 0; i < images_data.size(); ++i) {
                     result[i].theta = atan2(x[DIMENSION_2D * i + 1], x[DIMENSION_2D * i]);
                 }
             }
@@ -559,10 +559,10 @@ FLOAT_TYPE MultiImages::getImagesMinimumLineDistortionRotation(const int _from, 
     if(images_minimum_line_distortion_rotation.empty()) {
         images_minimum_line_distortion_rotation.resize(images_data.size());
         for(int i = 0; i < images_minimum_line_distortion_rotation.size(); ++i) {
-            images_minimum_line_distortion_rotation[i].resize(images_data.size(), MAXFLOAT);
+            images_minimum_line_distortion_rotation[i].resize(images_data.size(), std::numeric_limits<float>::max());
         }
     }
-    if(images_minimum_line_distortion_rotation[_from][_to] == MAXFLOAT) {
+    if(images_minimum_line_distortion_rotation[_from][_to] == std::numeric_limits<float>::max()) {
         const vector<LineData> & from_lines   = images_data[_from].getLines();
         const vector<LineData> &   to_lines   = images_data[_to  ].getLines();
         const vector<Point2>   & from_project = getImagesLinesProject(_from, _to);

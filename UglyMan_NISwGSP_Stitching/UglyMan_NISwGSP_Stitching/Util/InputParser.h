@@ -15,7 +15,7 @@
 #include <vector>
 #include <map>
 
-#include "ErrorController.h"
+#include "../Debugger/ErrorController.h"
 
 using namespace std;
 

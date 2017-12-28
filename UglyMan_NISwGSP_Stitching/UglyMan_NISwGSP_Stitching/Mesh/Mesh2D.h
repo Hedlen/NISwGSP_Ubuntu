@@ -9,8 +9,8 @@
 #ifndef __UglyMan_Stitiching__Mesh2D__
 #define __UglyMan_Stitiching__Mesh2D__
 
-#include "Configure.h"
-#include "Transform.h"
+#include "../Configure.h"
+#include "../Util/Transform.h"
 
 const int EDGE_VERTEX_SIZE = 2;
 

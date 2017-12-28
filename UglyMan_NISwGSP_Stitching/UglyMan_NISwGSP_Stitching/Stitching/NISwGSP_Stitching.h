@@ -9,7 +9,7 @@
 #ifndef __UglyMan_Stitiching__NISwGSP_Stitching__
 #define __UglyMan_Stitiching__NISwGSP_Stitching__
 
-#include "MeshOptimization.h"
+#include "../Mesh/MeshOptimization.h"
 
 class NISwGSP_Stitching : public MeshOptimization {
 public:
