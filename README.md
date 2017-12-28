@@ -1,5 +1,8 @@
 # Natural Image Stitching with the Global Similarity Prior
 
+Ubuntu:
+[![Build Status](https://www.travis-ci.org/Yannnnnnnnnnnn/NISwGSP.svg?branch=master)](https://www.travis-ci.org/Yannnnnnnnnnnn/NISwGSP)
+
 ### [[Project page]](http://www.cmlab.csie.ntu.edu.tw/project/stitching-wGSP/) [[Paper]](http://www.cmlab.csie.ntu.edu.tw/project/stitching-wGSP/ECCV-2016-NISwGSP.pdf) [[Supplementary]](http://www.cmlab.csie.ntu.edu.tw/project/stitching-wGSP/ECCV-2016-NISwGSP-supplementary-material.pdf)
 
 
