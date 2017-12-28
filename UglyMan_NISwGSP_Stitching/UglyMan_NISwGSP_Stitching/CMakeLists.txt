@@ -5,8 +5,8 @@ PROJECT(NISwGSP)
 FIND_PACKAGE(OpenMP REQUIRED)
 
 #eigen
-add_subdirectory(eigen)
-
+FIND_PACKAGE(Eigen3 REQUIRED)
+include_directories(${EIGEN_INCLUDE_DIRS})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS} -DEIGEN_DONT_PARALLELIZE -std=c++11")
 

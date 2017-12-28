@@ -16,6 +16,7 @@ addons:
 
 before_script: 
   - cmake --version
+  
   - sudo apt-get install build-essential
   - sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
   - sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
@@ -30,12 +31,20 @@ before_script:
   - make -j4
   - sudo make install
 
+  - cd ${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/eigen/
+  - mkdir ${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/eigen/build
+  - mkdir ${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/eigen/install
+  - cd ${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/eigen/build
+  - cmake -D CMAKE_INSTALL_PREFIX=${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/eigen/install -D CMAKEPACKAGE_INSTALL_DIR=${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/eigen/install ..
+  - make -j4
+  - sudo make install 
+
   - cd ${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/vlfeat-0.9.20/
   - make -j4
 
   - mkdir ${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/build
   - cd ${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/build
-  - cmake -D VLFEAT_LIBRARY=${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/vlfeat-0.9.20/bin/glnxa64/libvl.so ..
+  - cmake -D EIGEN3_DIR=${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/eigen/install -D VLFEAT_LIBRARY=${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/vlfeat-0.9.20/bin/glnxa64/libvl.so ..
 
 
 script:
