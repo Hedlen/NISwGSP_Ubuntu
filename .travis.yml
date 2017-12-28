@@ -23,10 +23,10 @@ before_script:
   - cd ${TRAVIS_BUILD_DIR}/opencv
   - wget https://github.com/opencv/opencv/archive/3.4.0.tar.gz -O opencv.tar.gz
   - tar -xzvf opencv.tar.gz
-  - cd ${TRAVIS_BUILD_DIR}/opencv/opencv/
-  - mkdir ${TRAVIS_BUILD_DIR}/opencv/opencv/build
-  - cd ${TRAVIS_BUILD_DIR}/opencv/opencv/build/
-  - cmake . ${TRAVIS_BUILD_DIR}/opencv/opencv
+  - cd ${TRAVIS_BUILD_DIR}/opencv/opencv-3.4.0/
+  - mkdir ${TRAVIS_BUILD_DIR}/opencv/opencv-3.4.0/build
+  - cd ${TRAVIS_BUILD_DIR}/opencv/opencv-3.4.0/build/
+  - cmake . ${TRAVIS_BUILD_DIR}/opencv-3.4.0/opencv
   - make -j4
   - sudo make install
 
