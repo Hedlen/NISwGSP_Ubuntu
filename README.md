@@ -42,15 +42,20 @@ This repository is our C++ implementation of the **ECCV 2016** paper, **Natural 
 	```
 	./exe folder_name_in_[input-42-data]_folder
 	```
-  eg:
+  example:
   
   	```
 	./NISwGSP AANAP-building
 	```
 	
-	The results can be found in **[0_results]** folder under **[input-42-data]** folder.
-	
+The results can be found in **[0_results]** folder under **[input-42-data]** folder.
+
+
+
+
 ![exe](https://github.com/Yannnnnnnnnnnn/NISwGSP/blob/master/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/Screenshot%20from%202017-12-27%2022-28-08.bmp)
+
+
 5. Optional:
 	* You can control the parameters in **Configure.h** or **xxx-STITCH-GRAPH.txt**
 
