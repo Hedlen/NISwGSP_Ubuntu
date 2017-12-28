@@ -2,7 +2,6 @@
 
 ### [[Project page]](http://www.cmlab.csie.ntu.edu.tw/project/stitching-wGSP/) [[Paper]](http://www.cmlab.csie.ntu.edu.tw/project/stitching-wGSP/ECCV-2016-NISwGSP.pdf) [[Supplementary]](http://www.cmlab.csie.ntu.edu.tw/project/stitching-wGSP/ECCV-2016-NISwGSP-supplementary-material.pdf)
 
-<img src="./images/teaser.jpg" width="100%"/>
 
 This repository is our C++ implementation of the **ECCV 2016** paper, **Natural Image Stitching with the Global Similarity Prior**. If you use any code or data from our work, please cite our paper.
 

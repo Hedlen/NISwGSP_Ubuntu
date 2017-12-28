@@ -1,0 +1,44 @@
+language: cpp
+sudo: required
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      compiler: gcc
+
+addons:
+  apt:
+    packages:
+      - git
+      - mercurial
+      - cmake
+      - libpng-dev
+      - libjpeg-dev
+      - libtiff-dev
+      - libglu1-mesa-dev
+
+before_script: 
+  - cmake --version
+
+  - mkdir ${TRAVIS_BUILD_DIR}/opencv
+  - cd ${TRAVIS_BUILD_DIR}/opencv
+  - wget https://github.com/opencv/opencv/archive/3.4.0.tar.gz -O opencv.tar.gz
+  - tar -xzvf opencv.tar.gz
+  - cd opencv/
+  - mkdir build
+  - cd build/
+  - cmake . ${TRAVIS_BUILD_DIR}/opencv/opencv
+  - make -j4
+  - sudo make install
+
+  - cd ${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/vlfeat-0.9.20/
+  - make -j4
+
+  - mkdir build
+  - cd build
+  - cmake -D VLFEAT_LIBRARY=${TRAVIS_BUILD_DIR}/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/vlfeat-0.9.20/bin/glnxa64/libvl.so . ${TRAVIS_BUILD_DIR} 
+
+
+script:
+- make -j4 
