@@ -1,5 +1,7 @@
 # Natural Image Stitching with the Global Similarity Prior
 
+# Thanks to the original author for his contribution. Based on the original author's repository, I made some bug fixes and added some features.
+
 Ubuntu:
 [![Build Status](https://www.travis-ci.org/Yannnnnnnnnnnn/NISwGSP.svg?branch=master)](https://www.travis-ci.org/Yannnnnnnnnnnn/NISwGSP)
 
