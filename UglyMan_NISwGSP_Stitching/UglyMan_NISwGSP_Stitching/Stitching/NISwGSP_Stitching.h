@@ -10,7 +10,7 @@
 #define __UglyMan_Stitiching__NISwGSP_Stitching__
 
 #include "../Mesh/MeshOptimization.h"
-
+#include <opencv2/highgui/highgui.hpp>
 class NISwGSP_Stitching : public MeshOptimization {
 public:
     NISwGSP_Stitching(const MultiImages & _multi_images);
@@ -21,9 +21,9 @@ public:
                                          const double _weight_gamma,
                                          const enum GLOBAL_ROTATION_METHODS _global_rotation_method);
     
-    void writeImage(const Mat & _image, const string _post_name) const;
+    void writeImage(const vector<Mat> & _image, const string _post_name) const;
     
-    Mat solve(const BLENDING_METHODS & _blend_method);
+    vector<Mat> solve(const BLENDING_METHODS & _blend_method);
 private:
 };
 

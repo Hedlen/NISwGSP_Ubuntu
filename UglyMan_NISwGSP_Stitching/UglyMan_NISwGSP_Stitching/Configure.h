@@ -112,6 +112,7 @@ const string BLENDING_METHODS_NAME[BLEND_METHODS_SIZE] = {
 
 /* type */
 typedef float FLOAT_TYPE;
+typedef double DOUBLE_TYPE;
 typedef Size_<FLOAT_TYPE> Size2;
 typedef Point_<FLOAT_TYPE> Point2;
 typedef Rect_<FLOAT_TYPE> Rect2;

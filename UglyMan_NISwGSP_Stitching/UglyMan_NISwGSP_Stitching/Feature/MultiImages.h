@@ -94,11 +94,11 @@ public:
     
     FLOAT_TYPE getImagesMinimumLineDistortionRotation(const int _from, const int _to) const;
     
-    Mat textureMapping(const vector<vector<Point2> > & _vertices,
+    vector<Mat> textureMapping(const vector<vector<Point2> > & _vertices,
                        const Size2 & _target_size,
                        const BLENDING_METHODS & _blend_method) const;
     
-    Mat textureMapping(const vector<vector<Point2> > & _vertices,
+    vector<Mat> textureMapping(const vector<vector<Point2> > & _vertices,
                        const Size2 & _target_size,
                        const BLENDING_METHODS & _blend_method,
                        vector<Mat> & _warp_images) const;
@@ -107,9 +107,11 @@ public:
                              const vector<vector<Point2> > & _vertices,
                              const string & _postfix,
                              const bool _only_border) const;
-    
+
     vector<ImageData> images_data;
+	vector<ImageData> mask_images_data;
     Parameter parameter;
+	Parameter mask_parameter;
 private:    
     /*** Debugger ***/
     void writeImageOfFeaturePairs(const string & _name,
@@ -151,7 +153,7 @@ private:
     mutable vector<vector<double> > images_polygon_space_matching_pts_weight;
     
     /* Line */
-    mutable vector<vector<FLOAT_TYPE> > images_minimum_line_distortion_rotation;
+    mutable vector<vector<DOUBLE_TYPE> > images_minimum_line_distortion_rotation;
     mutable vector<vector<vector<Point2> > > images_lines_projects; /* [m1][m2] img1 lines project on img2 */
     
     mutable vector<Mat> images;

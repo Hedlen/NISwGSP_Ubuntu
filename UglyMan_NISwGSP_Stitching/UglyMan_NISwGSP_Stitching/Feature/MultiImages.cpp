@@ -7,13 +7,16 @@
 //
 
 #include "MultiImages.h"
+#include <iostream>
 
 MultiImages::MultiImages(const string & _file_name,
                          LINES_FILTER_FUNC * _width_filter,
-                         LINES_FILTER_FUNC * _length_filter) : parameter(_file_name) {
+                         LINES_FILTER_FUNC * _length_filter) :parameter(_file_name),mask_parameter(string(_file_name) + "-mask")
+                         {
     
     for(int i = 0; i < parameter.image_file_full_names.size(); ++i) {
 #ifndef NDEBUG
+        //std::cout << parameter.image_file_full_names[i] << std::endl;
         images_data.emplace_back(parameter.file_dir,
                                  parameter.image_file_full_names[i],
                                  _width_filter,
@@ -26,6 +29,22 @@ MultiImages::MultiImages(const string & _file_name,
                                  _length_filter);
 #endif
     }
+    //string mask_file_name = string(_file_name) + "-mask";
+	//Parameter mask_parameter(mask_file_name);
+	for (int i = 0; i < mask_parameter.image_file_full_names.size(); ++i) {
+#ifndef NDEBUG
+        mask_images_data.emplace_back(mask_parameter.file_dir,
+            mask_parameter.image_file_full_names[i],
+            _width_filter,
+            _length_filter,
+            &mask_parameter.debug_dir);
+#else
+        images_data.emplace_back(parameter.file_dir,
+            parameter.image_file_full_names[i],
+            _width_filter,
+            _length_filter);
+#endif
+	}
 }
 
 void MultiImages::doFeatureMatching() const {
@@ -947,14 +966,14 @@ vector<pair<int, int> > MultiImages::getInitialFeaturePairs(const pair<int, int>
     return initial_indices;
 }
 
-Mat MultiImages::textureMapping(const vector<vector<Point2> > & _vertices,
+vector<Mat> MultiImages::textureMapping(const vector<vector<Point2> > & _vertices,
                                 const Size2 & _target_size,
                                 const BLENDING_METHODS & _blend_method) const {
     vector<Mat> warp_images;
     return textureMapping(_vertices, _target_size, _blend_method, warp_images);
 }
 
-Mat MultiImages::textureMapping(const vector<vector<Point2> > & _vertices,
+vector<Mat> MultiImages::textureMapping(const vector<vector<Point2> > & _vertices,
                                 const Size2 & _target_size,
                                 const BLENDING_METHODS & _blend_method,
                                 vector<Mat> & _warp_images) const {
@@ -974,10 +993,16 @@ Mat MultiImages::textureMapping(const vector<vector<Point2> > & _vertices,
     }
 #ifndef NDEBUG
     for(int i = 0; i < rects.size(); ++i) {
+        // cout << "here!!!!!" << endl;
         cout << images_data[i].file_name << " rect = " << rects[i] << endl;
     }
 #endif
     _warp_images.reserve(_vertices.size());
+
+    //for mask
+    vector<Mat> mask_warp_images;
+    mask_warp_images.reserve(_vertices.size());
+
     origins.reserve(_vertices.size());
     new_weight_mask.reserve(_vertices.size());
     
@@ -1016,6 +1041,7 @@ Mat MultiImages::textureMapping(const vector<vector<Point2> > & _vertices,
                 ++label;
             }
         }
+        // std::cout << "heheheheheheheheheheheeheheheeheheheheh" << std::endl;
         Mat image = Mat::zeros(rects[i].height + shift.y, rects[i].width + shift.x, CV_8UC4);
         Mat w_mask = (_blend_method != BLEND_AVERAGE) ? Mat::zeros(image.size(), CV_32FC1) : Mat();
         for(int y = 0; y < image.rows; ++y) {
@@ -1037,14 +1063,46 @@ Mat MultiImages::textureMapping(const vector<vector<Point2> > & _vertices,
                 }
             }
         }
+        // std::cout << "hahahahaahahhahahaahahahah" << std::endl;
+        //##############################################################################copy for mask
+                Mat mask_image = Mat::zeros(rects[i].height + shift.y, rects[i].width + shift.x, CV_8UC4);
+                Mat mask_w_mask = (_blend_method != BLEND_AVERAGE) ? Mat::zeros(mask_image.size(), CV_32FC1) : Mat();
+                for (int y = 0; y < mask_image.rows; ++y) {
+                        for (int x = 0; x < mask_image.cols; ++x) {
+                                int polygon_index = polygon_index_mask.at<int>(y, x);
+                                if (polygon_index != NO_GRID) {
+                                        Point2 p_f = applyTransform2x3<FLOAT_TYPE>(x, y,
+                                                affine_transforms[polygon_index]);
+                                        if (p_f.x >= 0 && p_f.y >= 0 &&
+                                                p_f.x <= mask_images_data[i].img.cols &&
+                                                p_f.y <= mask_images_data[i].img.rows) {
+                                                Vec<uchar, 1> alpha = getSubpix<uchar, 1>(mask_images_data[i].alpha_mask, p_f);
+                                                Vec3b c = getSubpix<uchar, 3>(mask_images_data[i].img, p_f);
+                                                mask_image.at<Vec4b>(y, x) = Vec4b(c[0], c[1], c[2], alpha[0]);
+                                                if (_blend_method != BLEND_AVERAGE) {
+                                                        mask_w_mask.at<float>(y, x) = getSubpix<float>(weight_mask[i], p_f);
+                                                }
+                                        }
+                                }
+                        }
+                }
+        //##############################################################################
         _warp_images.emplace_back(image);
+        mask_warp_images.emplace_back(mask_image);
         origins.emplace_back(rects[i].x, rects[i].y);
         if(_blend_method != BLEND_AVERAGE) {
             new_weight_mask.emplace_back(w_mask);
         }
     }
     
-    return Blending(_warp_images, origins, _target_size, new_weight_mask, _blend_method == BLEND_AVERAGE);
+    vector<Mat> Result;
+    Mat org_result = Blending(_warp_images, origins, _target_size, new_weight_mask, _blend_method == BLEND_AVERAGE);
+    Mat mask_result = Blending(mask_warp_images, origins, _target_size, new_weight_mask, _blend_method == BLEND_AVERAGE);
+    Result.push_back(org_result);
+    Result.push_back(mask_result);
+    return Result;
+
+    // return Blending(_warp_images, origins, _target_size, new_weight_mask, _blend_method == BLEND_AVERAGE);
 }
 
 void MultiImages::writeResultWithMesh(const Mat & _result,

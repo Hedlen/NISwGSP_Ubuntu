@@ -1,0 +1,3 @@
+/home/jiangting/dyp/re/wood/NISwGSP/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/build/CMakeFiles/edit_cache.dir
+/home/jiangting/dyp/re/wood/NISwGSP/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/build/CMakeFiles/rebuild_cache.dir
+/home/jiangting/dyp/re/wood/NISwGSP/UglyMan_NISwGSP_Stitching/UglyMan_NISwGSP_Stitching/build/CMakeFiles/NISwGSP.dir

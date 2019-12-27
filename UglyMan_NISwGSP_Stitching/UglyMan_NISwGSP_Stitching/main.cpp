@@ -28,14 +28,14 @@ int main(int argc, const char * argv[]) {
         niswgsp.setWeightToAlignmentTerm(1);
         niswgsp.setWeightToLocalSimilarityTerm(0.75);
         niswgsp.setWeightToGlobalSimilarityTerm(6, 20, GLOBAL_ROTATION_2D_METHOD);
-        niswgsp.writeImage(niswgsp.solve(BLEND_AVERAGE), BLENDING_METHODS_NAME[BLEND_AVERAGE]);
+        // niswgsp.writeImage(niswgsp.solve(BLEND_AVERAGE), BLENDING_METHODS_NAME[BLEND_AVERAGE]);
         niswgsp.writeImage(niswgsp.solve(BLEND_LINEAR),  BLENDING_METHODS_NAME[BLEND_LINEAR]);
-        /* 3D */
-        niswgsp.setWeightToAlignmentTerm(1);
-        niswgsp.setWeightToLocalSimilarityTerm(0.75);
-        niswgsp.setWeightToGlobalSimilarityTerm(6, 20, GLOBAL_ROTATION_3D_METHOD);
-        niswgsp.writeImage(niswgsp.solve(BLEND_AVERAGE), BLENDING_METHODS_NAME[BLEND_AVERAGE]);
-        niswgsp.writeImage(niswgsp.solve(BLEND_LINEAR),  BLENDING_METHODS_NAME[BLEND_LINEAR]);
+        // /* 3D */
+        // niswgsp.setWeightToAlignmentTerm(1);
+        // niswgsp.setWeightToLocalSimilarityTerm(0.75);
+        // niswgsp.setWeightToGlobalSimilarityTerm(6, 20, GLOBAL_ROTATION_3D_METHOD);
+        // niswgsp.writeImage(niswgsp.solve(BLEND_AVERAGE), BLENDING_METHODS_NAME[BLEND_AVERAGE]);
+        // niswgsp.writeImage(niswgsp.solve(BLEND_LINEAR),  BLENDING_METHODS_NAME[BLEND_LINEAR]);
         timer.end("[NISwGSP] " + multi_images.parameter.file_name);
     }
     return 0;

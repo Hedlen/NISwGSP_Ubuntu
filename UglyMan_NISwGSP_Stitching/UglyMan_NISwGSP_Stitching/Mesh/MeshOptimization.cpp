@@ -283,7 +283,8 @@ int MeshOptimization::getEdgeNeighborVerticesCount() const {
 vector<vector<Point2> > MeshOptimization::getImageVerticesBySolving(vector<Triplet<double> > & _triplets,
                                                                     const vector<pair<int, double> > & _b_vector) const {
     const int equations = global_similarity_equation.first + global_similarity_equation.second;
-
+    std::cout << "equations:" << equations << std::endl;
+    std::cout << "vertices:" << getVerticesCount() << std::endl;
     LeastSquaresConjugateGradient<SparseMatrix<double> > lscg;
     SparseMatrix<double> A(equations, getVerticesCount());
     VectorXd b = VectorXd::Zero(equations), x;
@@ -301,6 +302,7 @@ vector<vector<Point2> > MeshOptimization::getImageVerticesBySolving(vector<Tripl
     timer.end("Initial A matrix");
     timer.start();
 #endif
+    std::cout << "Aaaaaa" << std::endl;
     lscg.compute(A);
     x = lscg.solve(b);
 #ifndef NDEBUG
@@ -313,6 +315,12 @@ vector<vector<Point2> > MeshOptimization::getImageVerticesBySolving(vector<Tripl
     vertices.resize(multi_images->images_data.size());
     for(int i = 0, x_index = 0; i < vertices.size(); ++i) {
         int count = (int)multi_images->images_data[i].mesh_2d->getVertices().size() * DIMENSION_2D;
+        // std::cout << "count" << count << std::endl;
+        // if(count >= 700)
+        // {
+        //     count = 280;
+        // }
+        // std::cout << "count" << count << std::endl;
         vertices[i].reserve(count);
         for(int j = 0; j < count; j += DIMENSION_2D) {
             vertices[i].emplace_back(x[x_index + j    ],

@@ -8,6 +8,16 @@
 
 #include "Parameter.h"
 
+bool CmpTest(const string s1,const string s2)
+{
+    string a = s1.substr(0, s1.length() - 4);
+    // cout << "a:" << a << endl;
+    string b = s2.substr(0, s2.length() - 4);
+    int n1 = atoi(a.c_str());
+    int n2 = atoi(b.c_str());
+    // cout << "n1:" << n1 << endl;
+    return n1 < n2;
+}
 vector<string> getImageFileFullNamesInDir(const string & dir_name) {
     DIR *dir;
     struct dirent *ent;
@@ -37,6 +47,20 @@ vector<string> getImageFileFullNamesInDir(const string & dir_name) {
     } else {
         printError("F(getImageFileFullNamesInDir) could not open directory");
     }
+    // vector<string> test = result;
+    // std::sort(test.begin(), test.end());
+    // for(int i = 0; i < test.size(); i++)
+    // {
+    //     cout << "test" << endl;
+    //     cout << test[i] << endl;
+    // }
+    std::sort(result.begin(), result.end(), CmpTest);
+    // cout << "second" << endl;
+    // for(int i = 0; i < result.size(); i++)
+    // {
+        
+    //     cout << result[i] << endl;
+    // }
     return result;
 }
 

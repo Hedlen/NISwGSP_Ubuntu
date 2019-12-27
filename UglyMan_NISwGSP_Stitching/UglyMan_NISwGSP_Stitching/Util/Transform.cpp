@@ -136,6 +136,10 @@ vector<Rect_<T> > getVerticesRects(const vector<vector<Point_<T> > > & vertices)
         result.emplace_back(min_ix, min_iy,
                             max_ix - min_ix, max_iy - min_iy);
     }
+    std::cout << "result_x:" << result[0].x << std::endl;
+     std::cout << "result_y:" << result[0].y << std::endl;
+      std::cout << "result_width:" << result[0].width << std::endl;
+       std::cout << "result_height:" << result[0].height << std::endl;
     return result;
 }
 

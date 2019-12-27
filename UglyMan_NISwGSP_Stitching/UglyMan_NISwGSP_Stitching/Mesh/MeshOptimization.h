@@ -16,7 +16,7 @@ class MeshOptimization {
 public:
     MeshOptimization(const MultiImages & _multi_images);
 
-    virtual Mat solve(const BLENDING_METHODS & _blend_method) = 0;
+    virtual vector<Mat> solve(const BLENDING_METHODS & _blend_method) = 0;
 protected:
     void setWeightToAlignmentTerm(const double _weight);
     void setWeightToLocalSimilarityTerm(const double _weight);
